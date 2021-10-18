@@ -10,14 +10,19 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.addTranslation"
+		"onCommand:extension.addTranslation",
+		"onCommand:extension.translateSelectedText"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "extension.addTranslation",
-				"title": "Add Translation"
+				"title": "Transloco: Add translation"
+			},
+			{
+				"command": "extension.translateSelectedText",
+				"title": "Transloco: Translate selected text"
 			}
 		]
 	},
