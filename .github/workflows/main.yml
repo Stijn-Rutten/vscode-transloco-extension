@@ -6,11 +6,8 @@ on:
     types:
     - created
 jobs:
-  build:
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+  mac-os-build:
+    runs-on: macos-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -21,6 +18,35 @@ jobs:
     - run: npm install
     - run: npm test
       if: runner.os != 'Linux'
+    - name: Publish
+      if: success() && startsWith( github.ref, 'refs/tags/releases/') && matrix.os == 'ubuntu-latest'
+      run: npm run deploy
+      env:
+        VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        
+  windows-os-build:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+    - run: npm install
+    - run: npm test
+        
+  ubuntu-build:
+    needs: [mac-os-build, windows-os-build]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+    - run: npm install
     - name: Publish
       if: success() && startsWith( github.ref, 'refs/tags/releases/') && matrix.os == 'ubuntu-latest'
       run: npm run deploy
