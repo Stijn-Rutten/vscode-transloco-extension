@@ -10,7 +10,6 @@ import TYPES from "./types";
 // your extension is activated the very first time the command is executed
 export function activate(context: ExtensionContext) {
   const cmdManager = container.get<CommandsManager>(TYPES.CommandsManager);
-  console.log(cmdManager);
   cmdManager.registerCommands(context);
 }
 

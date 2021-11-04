@@ -1,15 +1,15 @@
-import { injectable, multiInject } from "inversify";
+import { inject, injectable, multiInject } from "inversify";
 import { commands, ExtensionContext } from "vscode";
+import { LoggingService } from "../services/logging-service";
 import TYPES from "../types";
 import { Command } from "./command";
 
 @injectable()
 export class CommandsManager {
-  constructor(@multiInject(TYPES.Command) private commands: Command[]) {}
+  constructor(@multiInject(TYPES.Command) private readonly _commands: Command[]) {}
 
   registerCommands(context: ExtensionContext): void {
-    console.log(this.commands);
-    this.commands.forEach((command) => {
+    this._commands.forEach((command) => {
       const cmd = commands.registerCommand(`extension.${command.id}`, command.execute, command);
       context.subscriptions.push(cmd);
     });

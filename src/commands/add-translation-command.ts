@@ -1,6 +1,7 @@
 import { inject, injectable } from "inversify";
 import { env, window } from "vscode";
 import { JsonUtilService } from "../services/json-util-service";
+import { LoggingService } from "../services/logging-service";
 import TYPES from "../types";
 import { Command } from "./command";
 
@@ -8,7 +9,7 @@ import { Command } from "./command";
 export class AddTranslationCommand implements Command {
   readonly id = "addTranslation";
 
-  constructor(@inject(TYPES.JsonUtilService) private _jsonUtilService: JsonUtilService) {}
+  constructor(@inject(TYPES.JsonUtilService) private _jsonUtilService: JsonUtilService, @inject(TYPES.LoggingService) private _logginService: LoggingService) {}
 
   async execute(): Promise<void> {
     const identifier = await window.showInputBox({
@@ -17,6 +18,7 @@ export class AddTranslationCommand implements Command {
     });
 
     if (!identifier) {
+      this._logginService.logError("No identifier provided");
       return;
     }
 
@@ -25,7 +27,8 @@ export class AddTranslationCommand implements Command {
       placeHolder: "e.g. Welcome to my hello world app!",
     });
 
-    if (!identifier || !text) {
+    if (!text) {
+      this._logginService.logError("No translatable text provided");
       return;
     }
 
