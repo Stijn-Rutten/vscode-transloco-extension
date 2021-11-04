@@ -1,70 +1,30 @@
-# transloco-entry-generator README
+# VsCode Transloco Extension 
+This extension allows you to quickly and easily add new translations to your Angular project using [Transloco](https://github.com/ngneat/transloco)
 
-This is the README for your extension "transloco-entry-generator". After writing up a brief description, we recommend including the following sections.
+[Marketplace](https://marketplace.visualstudio.com/items?itemName=StijnRutten.transloco-entry-generator)
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Currently this extension supports the following features:
 
-For example if there is an image subfolder under your extension project workspace:
 
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+| Name | Description | Note |
+|---|---|---|
+| Add Translation | Provide the key you want to use for your translation, followed by the string that should be translatable. | Currently the given string is added to all json files in the `assets/i18n` directory in your project. Customizable `i18n`-directories or different translations per `json` file are not yet supported |
+| Translate Highlighted text | After highlighting a string, use this command to provide an ID. The highlighted text is replaced with `t('GIVEN_ID')` and the text is placed in all json files in the `assets/i18n` directory of the project. | Currently the given string is added to all json files in the `assets/i18n` directory in your project. Customizable `i18n`-directories or different translations per `json` file are not yet supported |
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+1. This extension only works in Angular project in combination with Transloco.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Currently vscode-transloco-extension does not support extension settings.
 
 ## Release Notes
 
 Users appreciate release notes as you update your extension.
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+### 0.0.1
+* 🎉 Project setup 🎉 
+* Added "Add Translation" and "Translate Highlighted text" commands.
