@@ -1,69 +1,71 @@
 {
-	"name": "transloco-entry-generator",
-	"displayName": "transloco-entry-generator",
-	"publisher": "StijnRutten",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Stijn-Rutten/vscode-transloco-extension.git"
-	},
-	"description": "",
-	"version": "0.5.0",
-	"engines": {
-		"vscode": "^1.61.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onCommand:extension.addTranslation",
-		"onCommand:extension.translateSelectedText"
-	],
-	"main": "./dist/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "extension.addTranslation",
-				"title": "Transloco: Add translation"
-			},
-			{
-				"command": "extension.translateSelectedText",
-				"title": "Transloco: Translate selected text"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run package",
-		"compile": "webpack",
-		"watch": "webpack --watch",
-		"package": "webpack --mode production --devtool hidden-source-map",
-		"compile-tests": "tsc -p . --outDir out",
-		"watch-tests": "tsc -p -w . --outDir out",
-		"pretest": "npm run compile-tests && npm run compile && npm run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js",
-		"deploy": "vsce publish"
-	},
-	"devDependencies": {
-		"@types/glob": "^7.1.4",
-		"@types/jsonfile": "^6.0.1",
-		"@types/mocha": "^9.0.0",
-		"@types/node": "14.x",
-		"@types/vscode": "^1.61.0",
-		"@typescript-eslint/eslint-plugin": "^4.31.1",
-		"@typescript-eslint/parser": "^4.31.1",
-		"@vscode/test-electron": "^1.6.2",
-		"eslint": "^7.32.0",
-		"glob": "^7.1.7",
-		"mocha": "^9.1.1",
-		"ts-loader": "^9.2.5",
-		"typescript": "^4.4.3",
-		"vsce": "^2.1.0",
-		"webpack": "^5.52.1",
-		"webpack-cli": "^4.8.0"
-	},
-	"dependencies": {
-		"inversify": "^6.0.1",
-		"jsonfile": "^6.1.0",
-		"reflect-metadata": "^0.1.13"
-	}
+  "name": "transloco-entry-generator",
+  "displayName": "transloco-entry-generator",
+  "publisher": "StijnRutten",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Stijn-Rutten/vscode-transloco-extension.git"
+  },
+  "description": "",
+  "version": "0.5.0",
+  "engines": {
+    "vscode": "^1.61.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.addTranslation",
+    "onCommand:extension.translateSelectedText"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.addTranslation",
+        "title": "Transloco: Add translation"
+      },
+      {
+        "command": "extension.translateSelectedText",
+        "title": "Transloco: Translate selected text"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p -w . --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "deploy": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.4",
+    "@types/jsonfile": "^6.0.1",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.61.0",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "@vscode/test-electron": "^1.6.2",
+    "eslint": "^7.32.0",
+    "eslint-plugin-unused-imports": "^1.1.5",
+    "glob": "^7.1.7",
+    "mocha": "^9.1.1",
+    "prettier": "2.4.1",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.4.3",
+    "vsce": "^2.1.0",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0"
+  },
+  "dependencies": {
+    "inversify": "^6.0.1",
+    "jsonfile": "^6.1.0",
+    "reflect-metadata": "^0.1.13"
+  }
 }

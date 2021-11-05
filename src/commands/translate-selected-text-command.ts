@@ -10,8 +10,10 @@ export class TranslateSelectedTextCommand implements Command {
   readonly id = "translateSelectedText";
 
   constructor(
-    @inject(TYPES.JsonUtilService) private readonly _jsonUtilService: JsonUtilService,
-    @inject(TYPES.LoggingService) private readonly _loggingService: LoggingService,
+    @inject(TYPES.JsonUtilService)
+    private readonly _jsonUtilService: JsonUtilService,
+    @inject(TYPES.LoggingService)
+    private readonly _loggingService: LoggingService,
     @inject(TYPES.VsCodeService) private readonly _vsCodeService: VsCodeService
   ) {}
 

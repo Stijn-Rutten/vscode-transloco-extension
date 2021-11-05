@@ -7,11 +7,16 @@ import { LoggingService } from "./logging-service";
 
 @injectable()
 export class JsonUtilService implements JsonUtilService {
-  constructor(@inject(TYPES.LoggingService) private readonly _loggingService: LoggingService) {}
+  constructor(
+    @inject(TYPES.LoggingService)
+    private readonly _loggingService: LoggingService
+  ) {}
 
   writeToJsonFiles(identifier: string, text: string): void {
     if (!workspace.workspaceFolders) {
-      this._loggingService.logError("Current workspacefolder could not be located");
+      this._loggingService.logError(
+        "Current workspacefolder could not be located"
+      );
       return;
     }
 
@@ -19,13 +24,24 @@ export class JsonUtilService implements JsonUtilService {
     const i18nFolderPath = `${workSpacePath}\\src\\assets\\i18n`;
     const identifierParts = identifier?.split(".");
 
-    this._writeToAllJsonFilesInGivenFolder(i18nFolderPath, identifierParts, text);
+    this._writeToAllJsonFilesInGivenFolder(
+      i18nFolderPath,
+      identifierParts,
+      text
+    );
   }
 
-  private _writeToAllJsonFilesInGivenFolder(i18nFolderPath: string, identifierParts: string[], text: string) {
+  private _writeToAllJsonFilesInGivenFolder(
+    i18nFolderPath: string,
+    identifierParts: string[],
+    text: string
+  ) {
     fs.readdir(i18nFolderPath, (err, files) => {
       if (err) {
-        this._loggingService.logErrors("Error while reading translation files:", err.message);
+        this._loggingService.logErrors(
+          "Error while reading translation files:",
+          err.message
+        );
         return;
       }
 
@@ -36,10 +52,17 @@ export class JsonUtilService implements JsonUtilService {
     });
   }
 
-  private _writeToJsonFile(filePath: string, identifierParts: string[], text: string) {
+  private _writeToJsonFile(
+    filePath: string,
+    identifierParts: string[],
+    text: string
+  ) {
     jsonfile.readFile(filePath, (err, data) => {
       if (err) {
-        this._loggingService.logErrors(`Error while reading ${filePath}:`, err.message);
+        this._loggingService.logErrors(
+          `Error while reading ${filePath}:`,
+          err.message
+        );
         return;
       }
 

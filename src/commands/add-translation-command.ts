@@ -10,8 +10,10 @@ export class AddTranslationCommand implements Command {
   readonly id = "addTranslation";
 
   constructor(
-    @inject(TYPES.JsonUtilService) private readonly _jsonUtilService: JsonUtilService,
-    @inject(TYPES.LoggingService) private readonly _logginService: LoggingService,
+    @inject(TYPES.JsonUtilService)
+    private readonly _jsonUtilService: JsonUtilService,
+    @inject(TYPES.LoggingService)
+    private readonly _logginService: LoggingService,
     @inject(TYPES.VsCodeService) private readonly _vsCodeService: VsCodeService
   ) {}
 
@@ -39,6 +41,8 @@ export class AddTranslationCommand implements Command {
     this._jsonUtilService.writeToJsonFiles(identifier, text);
 
     this._vsCodeService.writeToClipboard(`t('${identifier}')`);
-    this._vsCodeService.showInformationMessage("Transloco identifier copied to clipboard");
+    this._vsCodeService.showInformationMessage(
+      "Transloco identifier copied to clipboard"
+    );
   }
 }
