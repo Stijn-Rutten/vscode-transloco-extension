@@ -1,7 +1,7 @@
 import { inject, injectable } from "inversify";
-import { env, window } from "vscode";
 import { JsonUtilService } from "../services/json-util-service";
 import { LoggingService } from "../services/logging-service";
+import { VsCodeService } from "../services/vscode-util-service";
 import TYPES from "../types";
 import { Command } from "./command";
 
@@ -9,23 +9,27 @@ import { Command } from "./command";
 export class AddTranslationCommand implements Command {
   readonly id = "addTranslation";
 
-  constructor(@inject(TYPES.JsonUtilService) private _jsonUtilService: JsonUtilService, @inject(TYPES.LoggingService) private _logginService: LoggingService) {}
+  constructor(
+    @inject(TYPES.JsonUtilService) private readonly _jsonUtilService: JsonUtilService,
+    @inject(TYPES.LoggingService) private readonly _logginService: LoggingService,
+    @inject(TYPES.VsCodeService) private readonly _vsCodeService: VsCodeService
+  ) {}
 
   async execute(): Promise<void> {
-    const identifier = await window.showInputBox({
+    const identifier = await this._vsCodeService.showInputBox({
       title: "Provide Transloco identifier",
       placeHolder: "e.g. Homepage.Title.HelloWorld",
+    });
+
+    const text = await this._vsCodeService.showInputBox({
+      title: "Provide text",
+      placeHolder: "e.g. Welcome to my hello world app!",
     });
 
     if (!identifier) {
       this._logginService.logError("No identifier provided");
       return;
     }
-
-    const text = await window.showInputBox({
-      title: "Provide text",
-      placeHolder: "e.g. Welcome to my hello world app!",
-    });
 
     if (!text) {
       this._logginService.logError("No translatable text provided");
@@ -34,7 +38,7 @@ export class AddTranslationCommand implements Command {
 
     this._jsonUtilService.writeToJsonFiles(identifier, text);
 
-    env.clipboard.writeText(`t('${identifier}')`);
-    window.showInformationMessage("Transloco identifier copied to clipboard");
+    this._vsCodeService.writeToClipboard(`t('${identifier}')`);
+    this._vsCodeService.showInformationMessage("Transloco identifier copied to clipboard");
   }
 }

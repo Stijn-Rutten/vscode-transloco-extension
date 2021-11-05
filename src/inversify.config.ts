@@ -8,11 +8,13 @@ import { Command } from "./commands/command";
 import { CommandsManager } from "./commands/commands-manager";
 import { TranslateSelectedTextCommand } from "./commands/translate-selected-text-command";
 import { LoggingService } from "./services/logging-service";
+import { VsCodeService } from "./services/vscode-util-service";
 
 const container = new Container();
 
 container.bind<JsonUtilService>(TYPES.JsonUtilService).to(JsonUtilService);
 container.bind<LoggingService>(TYPES.LoggingService).to(LoggingService);
+container.bind<VsCodeService>(TYPES.VsCodeService).to(VsCodeService);
 
 container.bind<Command>(TYPES.Command).to(AddTranslationCommand);
 container.bind<Command>(TYPES.Command).to(TranslateSelectedTextCommand);

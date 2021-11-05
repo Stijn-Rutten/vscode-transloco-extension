@@ -1,6 +1,5 @@
-import { inject, injectable, multiInject } from "inversify";
+import { injectable, multiInject } from "inversify";
 import { commands, ExtensionContext } from "vscode";
-import { LoggingService } from "../services/logging-service";
 import TYPES from "../types";
 import { Command } from "./command";
 
